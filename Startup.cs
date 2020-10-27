@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Showcase.Data;
+using Microsoft.EntityFrameworkCore;
+
+
 
 namespace Showcase
 {
@@ -23,7 +27,14 @@ namespace Showcase
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
+            services.AddDbContext<AppDbContext>(options =>
+           {
+                options.UseSqlServer(Configuration.GetConnectionString("AppDbConnectionString"));
+            //    options.UseSqlServer("Server=mssql-test;Database=master;User=sa;Password=${password};");
+           });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
