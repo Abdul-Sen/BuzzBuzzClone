@@ -1,0 +1,28 @@
+version: "3.7"
+services: 
+    db:
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        ports: 
+            - "1433:1433"
+        environment: 
+            SA_PASSWORD: 'abdul.rm112312@dsadasdsa'
+            ACCEPT_EULA: "Y"
+        volumes: 
+            - "mssql-vol:/var/opt/mssql"
+        networks:
+            - back
+    showcase-api:
+        depends_on: 
+            - db
+        build: .
+        ports:
+            - "8080:80"
+        networks: 
+            - back
+        links: 
+            - db:db
+          
+networks:
+    back:
+volumes: 
+    mssql-vol:
