@@ -31,13 +31,15 @@ namespace Showcase.Controllers
 
         [HttpPost]
         public IActionResult CreateNewUser(UserModel UM){
-            // Console.WriteLine("hello can anyone read this????????????????");
-            Console.WriteLine("TEST 2");
-            Console.WriteLine(UM.ToString());
             _controllerContext.Add(UM);
             _controllerContext.SaveChanges();
             ViewBag.message = "User " + UM.Name + " added to DB";
-            return Redirect("~/HomeController/Index");
+            return Redirect("~/Home/Index");
+        }
+
+        [HttpGet]
+        public IActionResult ViewUsers(){          
+            return View("ViewUsers",_controllerContext.Users.ToList());
         }
     }
 }

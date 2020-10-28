@@ -1,0 +1,28 @@
+@model IEnumerable<Showcase.Models.UserModel>
+@{
+  ViewData["Title"] = "View Users";
+}
+
+<div> 
+    <div>
+    <p>Hello Users?</p>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(UserModel um in Model)
+        {
+            <tr>
+                <td>@um.Name</td>
+                <td>@um.Email</td>
+            </tr>
+        }
+  </tbody>
+</table>
+
+</div>
