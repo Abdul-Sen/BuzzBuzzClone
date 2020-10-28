@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 
 namespace Showcase.Models {
-    public class UserModel
+    public class ProjectModel
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
-        public string Email { get; set; }
-
-        public override string ToString()
-        {
-            return "User: " + this.Name + ", Email: " + this.Email;
-        }
-
+        public int MinSqft { get; set; }
+        public int MaxSqft { get; set; }
+        public int AddressId {get; set;}
+        
+        public int BuilderId {get; set;}
     }
 }

@@ -1,0 +1,33 @@
+@model IEnumerable<Showcase.Models.ProjectModel>
+@{
+    ViewData["Title"] = "Projects";
+}
+
+
+
+<div>
+    <div>
+        <h2>Projects: </h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Minimum Space (sqft)</th>
+                    <th scope="col">Maximum Space (sqft)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ProjectModel pm in Model)
+                {
+                    <tr>
+                        <td>@pm.Name</td>
+                        <td>@pm.MinSqft</td>
+                        <td>@pm.MaxSqft</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div id="grid-container">
+            
+        </div>
+    </div>

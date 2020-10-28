@@ -11,8 +11,12 @@ namespace Showcase.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            
+
         }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<ProjectModel> Project { get; set; }
+        public DbSet<AddressModel> Address { get; set; }
+        public DbSet<BuilderModel> Builder { get; set; }
+        public DbSet<UnitsModel> Units { get; set; }
     }
 }
