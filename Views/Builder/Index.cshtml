@@ -1,0 +1,44 @@
+@model IEnumerable<Showcase.Models.BuilderModel>
+@{
+    ViewData["Title"] = "All builders";
+}
+
+<div class="container">
+    <h1>Available Builders</h1>
+        <div class="row" >
+        <table class="table table-hover col-md-10 mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Delete</th>
+                    <th scope="col">Builder Name</th>
+                    <th scope="col">Builder Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (BuilderModel bm in Model)
+                {
+                    <tr onclick="location.href = '@(Url.Action("Edit", "Builder", new { builderId = @bm.Id }))'" >
+                        <td>
+                            <a asp-controller="Builder" asp-action="Delete" asp-route-id="@bm.Id" class="close" aria-label="Close" style="color: black; cursor: pointer;">
+                                <span aria-hidden="true">&times;</span>
+                            </a>
+                        </td>
+                        <td>@bm.BuilderName</td>
+                        <td>@bm.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1 offset-md-9 mb-3">
+            <a class="btn btn-success" asp-controller="Builder" asp-action="Create" >
+                Add new company
+            </a>
+        </div>
+    </div>
+</div>
+
+</div>
