@@ -53,8 +53,8 @@ namespace Showcase.Controllers
         {
             Console.WriteLine("unit detail action called");            
             Console.WriteLine($"UNIT ID IS.. {unitId}");
-
-            return Redirect("~/Home/Index");
+            var unit = _controllerContext.Units.FirstOrDefault( x => x.Id == unitId);
+            return View("UnitInfo",unit);
         }
     }
 }
