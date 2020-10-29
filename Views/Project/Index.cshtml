@@ -4,34 +4,32 @@
 }
 
 @section css {
-    <link href="@Url.Content("~/css/MyStyle.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/project.css")" rel="stylesheet" type="text/css" />
 }
 
 
 
 <div>
     <div>
-        <h1>Projects: </h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Minimum Space (sqft)</th>
-                    <th scope="col">Maximum Space (sqft)</th>
-                </tr>
-            </thead>
-            <tbody>
+        <h1>Available Condo Projects:</h1>
+        <div id="grid-container" class="col-sm row">
                 @foreach (ProjectModel pm in Model)
                 {
-                    <tr>
-                        <td>@pm.Name</td>
-                        <td>@pm.MinSqft</td>
-                        <td>@pm.MaxSqft</td>
-                    </tr>
+                    <div class="card m-2" id="project-card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@pm.Name Condos</h5>
+
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-columns" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M15 2H1v12h14V2zM1 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1z"/>
+                                    <path fill-rule="evenodd" d="M7.5 14V2h1v12h-1zm0-8H1V5h6.5v1zm7.5 5H8.5v-1H15v1z"/>
+                                </svg>
+                                
+                                @pm.MinSqft - @pm.MaxSqft Sqft</h6>
+                            <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam.</p>
+                            <a asp-controller="Project" asp-action="ProjectDetails" asp-route-id="@pm.Id" class="btn btn-primary" >View More</a>
+                        </div>
+                    </div>
                 }
-            </tbody>
-        </table>
-        <div id="grid-container">
-            
         </div>
     </div>

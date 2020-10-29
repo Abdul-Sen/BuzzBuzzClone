@@ -1,0 +1,75 @@
+@model Showcase.Models.Custom.ProjectDetails
+@{
+    ViewData["Title"] = "Details";
+}
+@section css {
+    <link href="@Url.Content("~/css/projectdetail.css")" rel="stylesheet" type="text/css" />
+}
+@*
+    1 - show project title
+    2 - light rectagular card showing basic info about project
+    3 - 1 para describing project
+    4 - list available units
+    5 - on right, show edit/ delete buttons
+    6 -
+*@
+
+<div>
+    <h1>@Model.ProjectRecord.Name Condos</h1>
+    <div class="container">
+        <div class="row">
+            <div id="detail-card" class="col-md-5 col-xl-5 col-md-offset-4 col-xl-4">
+                <div>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                    </span>@Model.ProjectRecord.Address.StreetName @Model.ProjectRecord.Address.StreetNo Rd, @Model.ProjectRecord.Address.State @Model.ProjectRecord.Address.Country</span>
+                </div>
+                <div>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-columns" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M15 2H1v12h14V2zM1 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H1z"/>
+                        <path fill-rule="evenodd" d="M7.5 14V2h1v12h-1zm0-8H1V5h6.5v1zm7.5 5H8.5v-1H15v1z"/>
+                    </svg>
+                    <span>Avg Foor space: </span> @Model.ProjectRecord.MinSqft sqft - @Model.ProjectRecord.MaxSqft sqft
+                </div>
+                <div>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bricks" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M0 .5A.5.5 0 0 1 .5 0h15a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H14v2h1.5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5H2v-2H.5a.5.5 0 0 1-.5-.5v-3A.5.5 0 0 1 .5 6H2V4H.5a.5.5 0 0 1-.5-.5v-3zM3 4v2h4.5V4H3zm5.5 0v2H13V4H8.5zM3 10v2h4.5v-2H3zm5.5 0v2H13v-2H8.5zM1 1v2h3.5V1H1zm4.5 0v2H15V1H5.5zM1 7v2h3.5V7H1zm4.5 0v2h5V7h-5zm6 0v2H15V7h-3.5zM1 13v2h3.5v-2H1zm4.5 0v2h5v-2h-5zm6 0v2H15v-2h-3.5z"/>
+                    </svg>
+                    <span>By </span> <div style="text-decoration: underline; display: inline">@Model.ProjectRecord.Builder.BuilderName</div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-10 col-sm-12">
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            </div>
+        </div>
+
+        <div> @* Units section *@
+            <h2>Available Units:</h2>
+            <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Unit No</th>
+                    <th scope="col">Floor Space (sqft)</th>
+                    <th scope="col"># Bedrooms</th>
+                    <th scope="col"># of Bathrooms</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var unit in Model.UnitsList)
+                {
+                    <tr onclick="location.href = '@(Url.Action("UnitDetails", "Project", new { unitId = @unit.Id }))'" >
+                        <td>@unit.UnitNo</td>
+                        <td>@unit.FloorSpaceSqft</td>
+                        <td>@unit.BedCount</td>
+                        <td>@unit.BathCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
