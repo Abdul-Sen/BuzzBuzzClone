@@ -10,6 +10,11 @@ namespace Showcase.Models {
     {
         public int Id { get; set; }
         public string BuilderName { get; set; }
-        public int Email { get; set; }
+        public string Email { get; set; }
+        
+        public override string ToString()
+        {
+            return $"Id: {Id} , Builder Name: {BuilderName} , Email: {Email}";
+        }
     }
 }

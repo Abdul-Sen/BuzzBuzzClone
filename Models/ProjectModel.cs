@@ -16,5 +16,15 @@ namespace Showcase.Models {
         public int AddressId {get; set;}
         
         public int BuilderId {get; set;}
+
+        // relationship
+        public BuilderModel Builder { get; set; }
+        public AddressModel Address {get; set; }
+
+
+        public override string ToString()
+        {
+            return $"id: {Id} , Name: {Name}, MinSqft: {MinSqft} , MaxSqft: {MaxSqft} AddressFK: {AddressId} , BuilderId: {BuilderId} \n ||  Builder Name: {Builder.BuilderName} , Builder Email: {Builder.Email} , Builder ID: {Builder.Id} || \n Address {Address}";
+        }
     }
 }

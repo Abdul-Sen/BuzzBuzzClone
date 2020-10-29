@@ -10,8 +10,13 @@ namespace Showcase.Models {
     {
         public int Id { get; set; }
         public string Country { get; set; }
-        public int State { get; set; }
-        public int StreetName { get; set; }
+        public string State { get; set; }
+        public string StreetName { get; set; }
         public int StreetNo {get; set;}
+
+        public override string ToString()
+        {
+            return $"Id: {Id} , Country: {Country} , State: {State}, Street Name: {StreetName} StreetNo: {StreetNo}";
+        }
     }
 }
