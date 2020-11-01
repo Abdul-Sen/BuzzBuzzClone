@@ -8,6 +8,7 @@ using Showcase.Data;
 using Showcase.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace Showcase.Controllers
 {
     public class BuilderController : Controller
@@ -64,7 +65,19 @@ namespace Showcase.Controllers
             return Redirect("~/Builder/Index");   
         }
 
-        
+
+        [HttpGet]
+        [Route("/Builder/BuilderProjects/{builderId}")]
+        public IActionResult BuilderProjects(int builderId)
+        {
+            Console.WriteLine("Builder projects called with id: " + builderId);
+            // get builder
+            BuilderModel bm = _controllerContext.Builder.FirstOrDefault(x => x.Id == builderId);
+            // select * from projects where BuilderId == 1000; //Lambda Linq
+            List<ProjectModel> projectList = _controllerContext.Project.Where(project => project.BuilderId == bm.Id).ToList();
+            Showcase.Models.Custom.BuilderProjects builderProjects = new Models.Custom.BuilderProjects() { builder = bm, projects = projectList };
+            return View("BuilderProjects", builderProjects);
+        }
         
     }
 }

@@ -17,9 +17,9 @@
             <tbody>
                 @foreach (BuilderModel bm in Model)
                 {
-                    <tr onclick="location.href = '@(Url.Action("Edit", "Builder", new { builderId = @bm.Id }))'" >
+                    <tr onclick="location.href = '@(Url.Action("Edit", "Builder", new { builderId = @bm.Id }))'" style="cursor: pointer;" >
                         <td>
-                            <a asp-controller="Builder" asp-action="Delete" asp-route-id="@bm.Id" class="close" aria-label="Close" style="color: black; cursor: pointer;">
+                            <a asp-controller="Builder" asp-action="Delete" asp-route-id="@bm.Id" class="close" aria-label="Close" style="color: black;">
                                 <span aria-hidden="true">&times;</span>
                             </a>
                         </td>
